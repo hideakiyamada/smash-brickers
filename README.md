@@ -1,7 +1,8 @@
 # プロジェクト名
+オンライン対戦型ブロック崩し「Smash Brickers」
 
 ## 概要
-プロジェクトの簡単な説明を記載します。何をするプロジェクトなのか、どのような問題を解決するのかを明確にします。
+Smash Brickersを開発するためのリポジトリ
 
 ## デモ
 プロジェクトのデモやスクリーンショットを含めると、視覚的に理解しやすくなります。
@@ -11,7 +12,7 @@
 
 ```bash
 # 例:
-git clone https://github.com/ユーザー名/リポジトリ名.git
-cd リポジトリ名
+git clone https://github.com/hideakiyamada/smash-brickers.git
+cd smash-brickers
 npm install
 ```
