@@ -28,3 +28,6 @@ coverage/
 
 # Others
 *.local
+
+# Docusaurus specific
+.docusaurus/
