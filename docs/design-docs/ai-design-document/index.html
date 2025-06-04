@@ -1,0 +1,163 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-design-docs/ai-design-document" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.7.0">
+<title data-rh="true">AI設計書（AI対戦対応時） | Smash Brickers</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://smash-brickers.github.io/smash-brickers/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://smash-brickers.github.io/smash-brickers/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://smash-brickers.github.io/smash-brickers/docs/design-docs/ai-design-document"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="AI設計書（AI対戦対応時） | Smash Brickers"><meta data-rh="true" name="description" content="1. 設計方針"><meta data-rh="true" property="og:description" content="1. 設計方針"><link data-rh="true" rel="icon" href="/smash-brickers/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://smash-brickers.github.io/smash-brickers/docs/design-docs/ai-design-document"><link data-rh="true" rel="alternate" href="https://smash-brickers.github.io/smash-brickers/docs/design-docs/ai-design-document" hreflang="en"><link data-rh="true" rel="alternate" href="https://smash-brickers.github.io/smash-brickers/docs/design-docs/ai-design-document" hreflang="x-default"><link rel="alternate" type="application/rss+xml" href="/smash-brickers/blog/rss.xml" title="Smash Brickers RSS Feed">
+<link rel="alternate" type="application/atom+xml" href="/smash-brickers/blog/atom.xml" title="Smash Brickers Atom Feed"><link rel="stylesheet" href="/smash-brickers/assets/css/styles.b8d2aa6b.css">
+<script src="/smash-brickers/assets/js/runtime~main.4a9edebd.js" defer="defer"></script>
+<script src="/smash-brickers/assets/js/main.82ceac11.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();t(null!==e?e:"light")}(),function(){try{const n=new URLSearchParams(window.location.search).entries();for(var[t,e]of n)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><link rel="preload" as="image" href="/smash-brickers/img/logo.svg"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/smash-brickers/"><div class="navbar__logo"><img src="/smash-brickers/img/logo.svg" alt="My Site Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/smash-brickers/img/logo.svg" alt="My Site Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">Smash Brickers</b></a><a class="navbar__item navbar__link" href="/smash-brickers/docs/intro">Tutorial</a><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/smash-brickers/docs/design-docs/gdd">開発者用ドキュメント</a><a class="navbar__item navbar__link" href="/smash-brickers/blog">Blog</a></div><div class="navbar__items navbar__items--right"><a href="https://github.com/facebook/docusaurus" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="Switch between dark and light mode (currently light mode)" aria-label="Switch between dark and light mode (currently light mode)" aria-live="polite" aria-pressed="false"><svg viewBox="0 0 24 24" width="24" height="24" class="lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" class="darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/smash-brickers/docs/design-docs/gdd">ゲームデザインドキュメント(GDD)</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/smash-brickers/docs/design-docs/functional-requirements-document">機能要件定義書</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/smash-brickers/docs/design-docs/screen-design-document">画面設計書（UI/UX）</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/smash-brickers/docs/design-docs/system-architecture-design-document">システムアーキテクチャ設計書</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/smash-brickers/docs/design-docs/network-specification">ネットワーク仕様書</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/smash-brickers/docs/design-docs/data-design-document">データ設計書</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" href="/smash-brickers/docs/design-docs/ai-design-document">AI設計書（AI対戦対応時）</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/smash-brickers/docs/design-docs/test-plan-document">テスト計画書</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/smash-brickers/docs/design-docs/development-and-operational-flow-design-document">開発・運用フロー設計書</a></li></ul></nav></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs" itemscope="" itemtype="https://schema.org/BreadcrumbList"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/smash-brickers/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li itemscope="" itemprop="itemListElement" itemtype="https://schema.org/ListItem" class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link" itemprop="name">AI設計書（AI対戦対応時）</span><meta itemprop="position" content="1"></li></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>AI設計書（AI対戦対応時）</h1></header>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="1-設計方針">1. 設計方針<a href="#1-設計方針" class="hash-link" aria-label="Direct link to 1. 設計方針" title="Direct link to 1. 設計方針">​</a></h2>
+<ul>
+<li><strong>目的</strong>
+<ul>
+<li>プレイヤーが不在や少人数の場合、AIが代わりに対戦相手としてゲームに参加できるようにする。</li>
+<li>ゲームバランスを保つため、AIの難易度調整が可能な設計とする。</li>
+</ul>
+</li>
+<li><strong>学習方式</strong>
+<ul>
+<li>強化学習やルールベースAIなど、開発リソースやゲーム性に応じて選択。</li>
+<li>今回は、まずはルールベースAIを実装し、将来的に強化学習や機械学習によるAIへ拡張可能とする。</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="2-aiの基本仕様">2. AIの基本仕様<a href="#2-aiの基本仕様" class="hash-link" aria-label="Direct link to 2. AIの基本仕様" title="Direct link to 2. AIの基本仕様">​</a></h2>
+<ul>
+<li><strong>対戦モード</strong>
+<ul>
+<li>1人プレイ時、またはプレイヤー不足時にAIが自動参加。</li>
+<li>最大4人モードでもAIがプレイヤーを補完。</li>
+</ul>
+</li>
+<li><strong>難易度設定</strong>
+<ul>
+<li>初級・中級・上級など複数段階を用意。</li>
+<li>難易度ごとにAIの反応速度や戦略を調整。</li>
+</ul>
+</li>
+<li><strong>AIの行動範囲</strong>
+<ul>
+<li>ボールの位置・速度・ブロック配置をリアルタイムで監視。</li>
+<li>パドル（ラケット）の移動を最適化し、ボールを落とさないようにする。</li>
+<li>パワーアップや特殊ブロックの効果も考慮した行動が可能。</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="3-aiロジック設計">3. AIロジック設計<a href="#3-aiロジック設計" class="hash-link" aria-label="Direct link to 3. AIロジック設計" title="Direct link to 3. AIロジック設計">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="31-ルールベースai初期実装">3.1 ルールベースAI（初期実装）<a href="#31-ルールベースai初期実装" class="hash-link" aria-label="Direct link to 3.1 ルールベースAI（初期実装）" title="Direct link to 3.1 ルールベースAI（初期実装）">​</a></h3>
+<ul>
+<li><strong>ボールの予測</strong>
+<ul>
+<li>ボールの現在位置・速度から、パドル到達位置を計算。</li>
+<li>パドルをその位置に移動させる。</li>
+</ul>
+</li>
+<li><strong>パワーアップ対応</strong>
+<ul>
+<li>パワーアップや特殊ブロックの出現を検知し、効果を優先的に取得。</li>
+</ul>
+</li>
+<li><strong>戦略の切り替え</strong>
+<ul>
+<li>難易度に応じて、反応速度や予測精度を調整。</li>
+<li>例：初級は予測誤差を大きく、上級はほぼ正確に追従。</li>
+</ul>
+</li>
+</ul>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="32-強化学習ai拡張時">3.2 強化学習AI（拡張時）<a href="#32-強化学習ai拡張時" class="hash-link" aria-label="Direct link to 3.2 強化学習AI（拡張時）" title="Direct link to 3.2 強化学習AI（拡張時）">​</a></h3>
+<ul>
+<li><strong>学習データの収集</strong>
+<ul>
+<li>ゲームプレイ中の状態（ボール位置、ブロック状態、パワーアップ等）と行動（パドル移動）を記録。</li>
+</ul>
+</li>
+<li><strong>学習フレームワーク</strong>
+<ul>
+<li>Unity ML-AgentsやChainerRLなどの強化学習ライブラリを活用[2][4]。</li>
+<li>Unreal Engine用の強化学習プラグインや自作エージェントも検討。</li>
+</ul>
+</li>
+<li><strong>学習プロセス</strong>
+<ul>
+<li>AIにゲームをプレイさせ、成功（ボールを落とさない、ブロックを壊す）に応じて報酬を与える[2][4]。</li>
+<li>学習時間やステップ数でAIの熟練度を調整[2]。</li>
+</ul>
+</li>
+<li><strong>推論・実行</strong>
+<ul>
+<li>学習済みモデルをゲームに組み込み、リアルタイムで行動決定。</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="4-aiのネットワーク対応">4. AIのネットワーク対応<a href="#4-aiのネットワーク対応" class="hash-link" aria-label="Direct link to 4. AIのネットワーク対応" title="Direct link to 4. AIのネットワーク対応">​</a></h2>
+<ul>
+<li><strong>ゲームサーバー上でのAI実行</strong>
+<ul>
+<li>AIはサーバー側で動作し、クライアントには通常のプレイヤーとして見える。</li>
+<li>ネットワーク同期は通常のプレイヤーと同じ方式で行う。</li>
+</ul>
+</li>
+<li><strong>AIの参加・退出</strong>
+<ul>
+<li>プレイヤーが参加/退出した際、AIの自動参加・退出を制御。</li>
+<li>マッチメイキング時にAI参加フラグを設定。</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="5-難易度調整">5. 難易度調整<a href="#5-難易度調整" class="hash-link" aria-label="Direct link to 5. 難易度調整" title="Direct link to 5. 難易度調整">​</a></h2>
+<ul>
+<li><strong>反応速度</strong>
+<ul>
+<li>難易度ごとにパドルの移動速度や反応遅延を設定。</li>
+</ul>
+</li>
+<li><strong>戦略の複雑さ</strong>
+<ul>
+<li>上級AIはブロック破壊の効率化やパワーアップの積極取得など、高度な戦略を実装。</li>
+</ul>
+</li>
+<li><strong>学習モデルの切り替え</strong>
+<ul>
+<li>強化学習AIの場合、学習済みモデルを難易度ごとに用意し、切り替え可能とする。</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="6-拡張性将来性">6. 拡張性・将来性<a href="#6-拡張性将来性" class="hash-link" aria-label="Direct link to 6. 拡張性・将来性" title="Direct link to 6. 拡張性・将来性">​</a></h2>
+<ul>
+<li><strong>AIの種類増加</strong>
+<ul>
+<li>複数のAIキャラクターや個性を持たせたAIを追加可能。</li>
+</ul>
+</li>
+<li><strong>学習データの蓄積</strong>
+<ul>
+<li>プレイヤーの行動データを蓄積し、より人間らしいAIへ発展。</li>
+</ul>
+</li>
+<li><strong>オンライン学習</strong>
+<ul>
+<li>将来的にAIがプレイヤーの行動をリアルタイムで学習し、適応する仕組みも検討。</li>
+</ul>
+</li>
+</ul>
+<hr>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="まとめ">まとめ<a href="#まとめ" class="hash-link" aria-label="Direct link to まとめ" title="Direct link to まとめ">​</a></h2>
+<p>本設計書に基づき、まずはルールベースAIを実装し、将来的に強化学習や機械学習による高度なAIへ拡張できる柔軟な設計を行います。<br>
+<!-- -->AIはサーバー側で動作し、ネットワーク同期や難易度調整にも対応することで、プレイヤー不足時やシングルプレイ時も快適なゲーム体験を提供します。</p>
+<p>Citations:
+[1] <a href="https://note.com/novel_honest2969/n/n9f3ab5d52c83" target="_blank" rel="noopener noreferrer">https://note.com/novel_honest2969/n/n9f3ab5d52c83</a>
+[2] <a href="https://note.com/suraimuking/n/n3304e36b7b9e" target="_blank" rel="noopener noreferrer">https://note.com/suraimuking/n/n3304e36b7b9e</a>
+[3] <a href="https://qiita.com/4q_sano/items/2183602b0152b3924e18" target="_blank" rel="noopener noreferrer">https://qiita.com/4q_sano/items/2183602b0152b3924e18</a>
+[4] <a href="https://avinton.com/academy/reinforcement-with-chainerrl/" target="_blank" rel="noopener noreferrer">https://avinton.com/academy/reinforcement-with-chainerrl/</a>
+[5] <a href="https://gigazine.net/news/20160620-google-deep-reinforcement-learning/" target="_blank" rel="noopener noreferrer">https://gigazine.net/news/20160620-google-deep-reinforcement-learning/</a>
+[6] <a href="https://zenn.dev/malme/articles/af106be72571e1" target="_blank" rel="noopener noreferrer">https://zenn.dev/malme/articles/af106be72571e1</a>
+[7] <a href="https://freelance-life.jp/unity_block_breaker/" target="_blank" rel="noopener noreferrer">https://freelance-life.jp/unity_block_breaker/</a>
+[8] <a href="https://hatana-kikaku.com/archives/113" target="_blank" rel="noopener noreferrer">https://hatana-kikaku.com/archives/113</a></p>
+<hr>
+<p>Answer from Perplexity: pplx.ai/share</p></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col"><a href="https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/design-docs/ai-design-document.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_JAkA"></div></div></footer></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/smash-brickers/docs/design-docs/data-design-document"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">データ設計書</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/smash-brickers/docs/design-docs/test-plan-document"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">テスト計画書</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#1-設計方針" class="table-of-contents__link toc-highlight">1. 設計方針</a></li><li><a href="#2-aiの基本仕様" class="table-of-contents__link toc-highlight">2. AIの基本仕様</a></li><li><a href="#3-aiロジック設計" class="table-of-contents__link toc-highlight">3. AIロジック設計</a><ul><li><a href="#31-ルールベースai初期実装" class="table-of-contents__link toc-highlight">3.1 ルールベースAI（初期実装）</a></li><li><a href="#32-強化学習ai拡張時" class="table-of-contents__link toc-highlight">3.2 強化学習AI（拡張時）</a></li></ul></li><li><a href="#4-aiのネットワーク対応" class="table-of-contents__link toc-highlight">4. AIのネットワーク対応</a></li><li><a href="#5-難易度調整" class="table-of-contents__link toc-highlight">5. 難易度調整</a></li><li><a href="#6-拡張性将来性" class="table-of-contents__link toc-highlight">6. 拡張性・将来性</a></li><li><a href="#まとめ" class="table-of-contents__link toc-highlight">まとめ</a></li></ul></div></div></div></div></main></div></div></div><footer class="footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="col footer__col"><div class="footer__title">Docs</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/smash-brickers/docs/intro">Tutorial</a></li></ul></div><div class="col footer__col"><div class="footer__title">Community</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://stackoverflow.com/questions/tagged/docusaurus" target="_blank" rel="noopener noreferrer" class="footer__link-item">Stack Overflow<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://discordapp.com/invite/docusaurus" target="_blank" rel="noopener noreferrer" class="footer__link-item">Discord<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://x.com/docusaurus" target="_blank" rel="noopener noreferrer" class="footer__link-item">X<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div><div class="col footer__col"><div class="footer__title">More</div><ul class="footer__items clean-list"><li class="footer__item"><a class="footer__link-item" href="/smash-brickers/blog">Blog</a></li><li class="footer__item"><a href="https://github.com/facebook/docusaurus" target="_blank" rel="noopener noreferrer" class="footer__link-item">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2025 My Project, Inc. Built with Docusaurus.</div></div></div></footer></div>
+</body>
+</html>
