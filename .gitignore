@@ -31,3 +31,49 @@ coverage/
 
 # Docusaurus specific
 .docusaurus/
+
+# UE5 プロジェクト用 .gitignore
+
+# Unreal Engine のビルド生成物
+Binaries/
+Intermediate/
+Saved/
+DerivedDataCache/
+Build/
+*.sln
+*.suo
+*.opensdf
+*.sdf
+*.VC.db
+*.opendb
+
+# プラグイン関連
+Plugins/*/Binaries/
+Plugins/*/Intermediate/
+
+# エディタキャッシュ
+*.vsconfig
+*.vscode/
+.vs/
+.idea/
+
+# ビルドやパッケージング生成物
+*.exe
+*.dll
+*.lib
+*.pdb
+*.exp
+*.obj
+*.ilk
+*.log
+
+# その他
+*.user
+*.userprefs
+*.autosave
+*.backup
+*.tmp
+
+# ローカル設定など
+*.ini
+LocalBuilds/
