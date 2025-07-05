@@ -5,7 +5,7 @@
 <meta name="generator" content="Docusaurus v3.7.0">
 <title data-rh="true">機能要件定義書 | Smash Brickers</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://smash-brickers.github.io/smash-brickers/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://smash-brickers.github.io/smash-brickers/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://smash-brickers.github.io/smash-brickers/docs/design-docs/functional-requirements-document"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="機能要件定義書 | Smash Brickers"><meta data-rh="true" name="description" content="オンライン対戦型ブロック崩しゲーム（Unreal Engine 5）機能要件定義書"><meta data-rh="true" property="og:description" content="オンライン対戦型ブロック崩しゲーム（Unreal Engine 5）機能要件定義書"><link data-rh="true" rel="icon" href="/smash-brickers/img/favicon.ico"><link data-rh="true" rel="canonical" href="https://smash-brickers.github.io/smash-brickers/docs/design-docs/functional-requirements-document"><link data-rh="true" rel="alternate" href="https://smash-brickers.github.io/smash-brickers/docs/design-docs/functional-requirements-document" hreflang="en"><link data-rh="true" rel="alternate" href="https://smash-brickers.github.io/smash-brickers/docs/design-docs/functional-requirements-document" hreflang="x-default"><link rel="alternate" type="application/rss+xml" href="/smash-brickers/blog/rss.xml" title="Smash Brickers RSS Feed">
 <link rel="alternate" type="application/atom+xml" href="/smash-brickers/blog/atom.xml" title="Smash Brickers Atom Feed"><link rel="stylesheet" href="/smash-brickers/assets/css/styles.b8d2aa6b.css">
-<script src="/smash-brickers/assets/js/runtime~main.f85d31c6.js" defer="defer"></script>
+<script src="/smash-brickers/assets/js/runtime~main.32b7674a.js" defer="defer"></script>
 <script src="/smash-brickers/assets/js/main.82ceac11.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
@@ -17,7 +17,7 @@
 <li>
 <p><strong>ゲームモード</strong></p>
 <ul>
-<li>オンライン対戦（最大2人、将来的に最大4人まで拡張可能）</li>
+<li>オンライン対戦（最大2人）</li>
 <li>1人プレイ（ソロプレイ）モード</li>
 <li>対戦時は「ぷよぷよ」のように2画面で並列表示</li>
 </ul>
@@ -51,7 +51,7 @@
 </li>
 <li><strong>ネットワーク同期</strong>
 <ul>
-<li>プレイヤー操作、ボール、ブロック、パワーアップなどのリアルタイム同期（Unreal Engineのレプリケーション機能利用）[2][3][4]</li>
+<li>プレイヤー操作、ボール、ブロック、パワーアップなどのリアルタイム同期（Unreal Engineのレプリケーション機能利用）</li>
 </ul>
 </li>
 </ul>
@@ -97,7 +97,7 @@
 <ul>
 <li><strong>スコア計算</strong>
 <ul>
-<li>ブロック破壊数、クリアタイム、パワーアップ取得数などで算出</li>
+<li>クリアタイムで算出</li>
 </ul>
 </li>
 <li><strong>ランキング機能</strong>
@@ -152,7 +152,7 @@
 <li><strong>REST APIの設計・実装・セキュリティ対策</strong></li>
 </ul>
 <hr>
-<p>この要件定義書を元に、各機能の優先度を決めて段階的に実装を進めることが推奨されます。特にUnreal Engine 5のマルチプレイ開発では、レプリケーションやセッション管理などのネットワーク設計が重要となります[2][3][4]。</p>
+<p>この要件定義書を元に、各機能の優先度を決めて段階的に実装を進めることが推奨されます。特にUnreal Engine 5のマルチプレイ開発では、レプリケーションやセッション管理などのネットワーク設計が重要となります</p>
 <p>Citations:
 [1] <a href="https://www.youtube.com/playlist?list=PLzykqv-wgIQXompUswD5iHllUHxGY7w0q" target="_blank" rel="noopener noreferrer">https://www.youtube.com/playlist?list=PLzykqv-wgIQXompUswD5iHllUHxGY7w0q</a>
 [2] <a href="https://dev.epicgames.com/documentation/en-us/unreal-engine/multiplayer-programming-quick-start-for-unreal-engine" target="_blank" rel="noopener noreferrer">https://dev.epicgames.com/documentation/en-us/unreal-engine/multiplayer-programming-quick-start-for-unreal-engine</a>
