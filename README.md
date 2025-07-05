@@ -16,9 +16,11 @@ cd smash-brickers
 npm install
 ```
 
-## DocumentサイトをGitHub Pagesにデプロイする方法
+## Docusaurusで作成したドキュメントサイトをGitHub Pagesにデプロイする方法
 
 ```bash
 cd docs
 GIT_USER=hideakiyamada npm run deploy
 ```
+
+[ドキュメントサイト](https://hideakiyamada.github.io/smash-brickers/)
