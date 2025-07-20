@@ -31,13 +31,6 @@ body:
         本来どうなることを期待していたか、明確かつ簡潔に記載してください
 
   - type: textarea
-    id: screenshots
-    attributes:
-      label: スクリーンショット
-      placeholder: |
-        該当する場合は、問題を説明するためのスクリーンショットを添付してください
-
-  - type: textarea
     id: environment-desktop
     attributes:
       label: このバグを発見した環境を記載してください(デスクトップ)
