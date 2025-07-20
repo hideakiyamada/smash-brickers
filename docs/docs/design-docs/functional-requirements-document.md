@@ -25,6 +25,9 @@ sidebar_position: 2
 
 ### 2. オンライン・マルチプレイ
 
+- **実現方法**
+  - Epic Online Services（EOS）を使用する
+
 - **マッチメイキング**
   - ランダムマッチ
   - フレンド対戦
