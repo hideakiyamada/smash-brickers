@@ -32,14 +32,6 @@ body:
         A clear and concise description of what you expected to happen
 
   - type: textarea
-    id: screenshots
-    attributes:
-      label: Screenshots
-      render: true
-      placeholder: |
-        If applicable, add screenshots to help explain your problem
-
-  - type: textarea
     id: environment-desktop
     attributes:
       label: Desktop (please complete the following information)
