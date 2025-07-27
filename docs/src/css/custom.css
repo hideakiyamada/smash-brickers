@@ -5,7 +5,7 @@
  */
 
 /* You can override the default Infima variables here. */
-:root {
+/* :root {
   --ifm-color-primary: #2e8555;
   --ifm-color-primary-dark: #29784c;
   --ifm-color-primary-darker: #277148;
@@ -15,10 +15,10 @@
   --ifm-color-primary-lightest: #3cad6e;
   --ifm-code-font-size: 95%;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
-}
+} */
 
 /* For readability concerns, you should choose a lighter palette in dark mode. */
-[data-theme='dark'] {
+/* [data-theme='dark'] {
   --ifm-color-primary: #25c2a0;
   --ifm-color-primary-dark: #21af90;
   --ifm-color-primary-darker: #1fa588;
@@ -27,4 +27,48 @@
   --ifm-color-primary-lighter: #32d8b4;
   --ifm-color-primary-lightest: #4fddbf;
   --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+} */
+
+:root {
+  --ifm-color-primary: #f92a82;
+  --ifm-color-primary-dark: #f81371;
+  --ifm-color-primary-darker: #f70a6a;
+  --ifm-color-primary-darkest: #d10056;
+  --ifm-color-primary-light: #f94193;
+  --ifm-color-primary-lighter: #fa4a99;
+  --ifm-color-primary-lightest: #fb73b4;
+  --ifm-code-font-size: 95%;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.1);
+}
+
+[data-theme='dark'] {
+  --ifm-color-primary: #ff85b6;
+  --ifm-color-primary-dark: #ff67a5;
+  --ifm-color-primary-darker: #ff599c;
+  --ifm-color-primary-darkest: #ff2a82;
+  --ifm-color-primary-light: #ffa3c7;
+  --ifm-color-primary-lighter: #ffadc_d;
+  --ifm-color-primary-lightest: #ffd0e4;
+  --docusaurus-highlighted-code-line-bg: rgba(0, 0, 0, 0.3);
+}
+
+.hero--primary {
+  background: linear-gradient(45deg, #4a00e0, #8e2de2);
+  color: white;
+}
+
+[data-theme='dark'] .hero--primary {
+  background: linear-gradient(45deg, #2c0085, #5c12a2);
+}
+
+header.hero--primary {
+  min-height: auto; /* ヘッダーの最小の高さを自動に調整 */
+  padding: 4rem 0 9.7rem;  /* ヘッダーの上下の余白を調整（上: 4rem, 下: 2rem） */
+}
+
+/* ナビゲーションバーとフッターの高さを統一 */
+.navbar,
+.footer {
+  padding-top: 1rem;
+  padding-bottom: 1rem;
 }

@@ -21,3 +21,15 @@
   align-items: center;
   justify-content: center;
 }
+
+.heroLogo {
+  max-width: 300px; /* ロゴの最大幅 */
+  margin-bottom: 1rem; /* ロゴとタグラインの間の余白 */
+}
+
+@media screen and (max-width: 768px) {
+  .videoContainer iframe {
+    width: 100%;
+    height: auto;
+  }
+}

@@ -6,14 +6,21 @@ import type * as Preset from '@docusaurus/preset-classic';
 
 const config: Config = {
   title: 'Smash Brickers',
-  tagline: 'Dinosaurs are cool',
-  favicon: 'img/favicon.ico',
+  tagline: 'デモ動画',
+  favicon: 'img/logo-smash-brickers.png',
 
   // Set the production url of your site here
   url: 'https://smash-brickers.github.io',
   // Set the /<baseUrl>/ pathname under which your site is served
   // For GitHub pages deployment, it is often '/<projectName>/'
   baseUrl: '/smash-brickers/',
+
+  markdown: {
+    mermaid: true,
+  },
+  themes: [
+    '@docusaurus/theme-mermaid'
+  ],
 
   // GitHub pages deployment config.
   // If you aren't using GitHub pages, you don't need these.
@@ -23,7 +30,7 @@ const config: Config = {
   onBrokenLinks: 'throw',
   onBrokenMarkdownLinks: 'warn',
 
-  // Even if you don't use internationalization, you can use this field to set
+  // Even if you don't use internationalization, you can use this ffaield to set
   // useful metadata like html lang. For example, if your site is Chinese, you
   // may want to replace "en" with "zh-Hans".
   i18n: {
@@ -71,14 +78,15 @@ const config: Config = {
       title: 'Smash Brickers',
       logo: {
         alt: 'My Site Logo',
-        src: 'img/logo.svg',
+        //src: 'img/logo.svg',
+        src: 'img/logo-smash-brickers.png', // ← ここを変更
       },
       items: [
         {
           type: 'docSidebar',
-          sidebarId: 'tutorialSidebar',
+          sidebarId: 'gameinstuctionDocsSidebar',
           position: 'left',
-          label: 'Tutorial',
+          label: 'ゲーム紹介',
         },
         {
           type: 'docSidebar',
@@ -86,9 +94,8 @@ const config: Config = {
           position: 'left',
           label: '開発者用ドキュメント',
         },
-        { to: '/blog', label: 'Blog', position: 'left' },
         {
-          href: 'https://github.com/facebook/docusaurus',
+          href: 'https://github.com/hideakiyamada/smash-brickers',
           label: 'GitHub',
           position: 'right',
         },
@@ -96,48 +103,7 @@ const config: Config = {
     },
     footer: {
       style: 'dark',
-      links: [
-        {
-          title: 'Docs',
-          items: [
-            {
-              label: 'Tutorial',
-              to: '/docs/intro',
-            },
-          ],
-        },
-        {
-          title: 'Community',
-          items: [
-            {
-              label: 'Stack Overflow',
-              href: 'https://stackoverflow.com/questions/tagged/docusaurus',
-            },
-            {
-              label: 'Discord',
-              href: 'https://discordapp.com/invite/docusaurus',
-            },
-            {
-              label: 'X',
-              href: 'https://x.com/docusaurus',
-            },
-          ],
-        },
-        {
-          title: 'More',
-          items: [
-            {
-              label: 'Blog',
-              to: '/blog',
-            },
-            {
-              label: 'GitHub',
-              href: 'https://github.com/facebook/docusaurus',
-            },
-          ],
-        },
-      ],
-      copyright: `Copyright © ${new Date().getFullYear()} My Project, Inc. Built with Docusaurus.`,
+      copyright: `Copyright © ${new Date().getFullYear()} Smash Brickers. Built with Docusaurus.`,
     },
     prism: {
       theme: prismThemes.github,
