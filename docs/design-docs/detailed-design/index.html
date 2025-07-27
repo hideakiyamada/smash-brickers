@@ -1,0 +1,464 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="docs-wrapper plugin-docs plugin-id-default docs-version-current docs-doc-page docs-doc-id-design-docs/detailed-design" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.7.0">
+<title data-rh="true">詳細設計書 | Smash Brickers</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:image" content="https://smash-brickers.github.io/smash-brickers/img/docusaurus-social-card.jpg"><meta data-rh="true" name="twitter:image" content="https://smash-brickers.github.io/smash-brickers/img/docusaurus-social-card.jpg"><meta data-rh="true" property="og:url" content="https://smash-brickers.github.io/smash-brickers/docs/design-docs/detailed-design"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docusaurus_version" content="current"><meta data-rh="true" name="docusaurus_tag" content="docs-default-current"><meta data-rh="true" name="docsearch:version" content="current"><meta data-rh="true" name="docsearch:docusaurus_tag" content="docs-default-current"><meta data-rh="true" property="og:title" content="詳細設計書 | Smash Brickers"><meta data-rh="true" name="description" content="主にUnreal Engineの設定内容を記載する"><meta data-rh="true" property="og:description" content="主にUnreal Engineの設定内容を記載する"><link data-rh="true" rel="icon" href="/smash-brickers/img/logo-smash-brickers.png"><link data-rh="true" rel="canonical" href="https://smash-brickers.github.io/smash-brickers/docs/design-docs/detailed-design"><link data-rh="true" rel="alternate" href="https://smash-brickers.github.io/smash-brickers/docs/design-docs/detailed-design" hreflang="en"><link data-rh="true" rel="alternate" href="https://smash-brickers.github.io/smash-brickers/docs/design-docs/detailed-design" hreflang="x-default"><link rel="alternate" type="application/rss+xml" href="/smash-brickers/blog/rss.xml" title="Smash Brickers RSS Feed">
+<link rel="alternate" type="application/atom+xml" href="/smash-brickers/blog/atom.xml" title="Smash Brickers Atom Feed"><link rel="stylesheet" href="/smash-brickers/assets/css/styles.5b84d6ed.css">
+<script src="/smash-brickers/assets/js/runtime~main.c2dbd39e.js" defer="defer"></script>
+<script src="/smash-brickers/assets/js/main.7c674ce0.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();t(null!==e?e:"light")}(),function(){try{const n=new URLSearchParams(window.location.search).entries();for(var[t,e]of n)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><link rel="preload" as="image" href="/smash-brickers/img/logo-smash-brickers.png"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/smash-brickers/"><div class="navbar__logo"><img src="/smash-brickers/img/logo-smash-brickers.png" alt="My Site Logo" class="themedComponent_mlkZ themedComponent--light_NVdE"><img src="/smash-brickers/img/logo-smash-brickers.png" alt="My Site Logo" class="themedComponent_mlkZ themedComponent--dark_xIcU"></div><b class="navbar__title text--truncate">Smash Brickers</b></a><a class="navbar__item navbar__link" href="/smash-brickers/docs/game-introduction/">ゲーム紹介</a><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/smash-brickers/docs/design-docs/gdd">開発者用ドキュメント</a></div><div class="navbar__items navbar__items--right"><a href="https://github.com/hideakiyamada/smash-brickers" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="Switch between dark and light mode (currently light mode)" aria-label="Switch between dark and light mode (currently light mode)" aria-live="polite" aria-pressed="false"><svg viewBox="0 0 24 24" width="24" height="24" class="lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" class="darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_z2l0"><div class="docsWrapper_hBAB"><button aria-label="Scroll back to top" class="clean-btn theme-back-to-top-button backToTopButton_sjWU" type="button"></button><div class="docRoot_UBD9"><aside class="theme-doc-sidebar-container docSidebarContainer_YfHR"><div class="sidebarViewport_aRkj"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/smash-brickers/docs/design-docs/gdd">ゲームデザインドキュメント(GDD)</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/smash-brickers/docs/design-docs/functional-requirements">機能要件定義書</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/smash-brickers/docs/design-docs/screen-design">画面設計書(UI/UX)</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/smash-brickers/docs/design-docs/system-architecture-design">システムアーキテクチャ設計書</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" href="/smash-brickers/docs/design-docs/detailed-design">詳細設計書</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/smash-brickers/docs/design-docs/development-environment">開発環境</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-1 menu__list-item"><a class="menu__link" href="/smash-brickers/docs/design-docs/document-management">ドキュメント管理</a></li></ul></nav></div></div></aside><main class="docMainContainer_TBSr"><div class="container padding-top--md padding-bottom--lg"><div class="row"><div class="col docItemCol_VOVn"><div class="docItemContainer_Djhp"><article><nav class="theme-doc-breadcrumbs breadcrumbsContainer_Z_bl" aria-label="Breadcrumbs"><ul class="breadcrumbs" itemscope="" itemtype="https://schema.org/BreadcrumbList"><li class="breadcrumbs__item"><a aria-label="Home page" class="breadcrumbs__link" href="/smash-brickers/"><svg viewBox="0 0 24 24" class="breadcrumbHomeIcon_YNFT"><path d="M10 19v-5h4v5c0 .55.45 1 1 1h3c.55 0 1-.45 1-1v-7h1.7c.46 0 .68-.57.33-.87L12.67 3.6c-.38-.34-.96-.34-1.34 0l-8.36 7.53c-.34.3-.13.87.33.87H5v7c0 .55.45 1 1 1h3c.55 0 1-.45 1-1z" fill="currentColor"></path></svg></a></li><li itemscope="" itemprop="itemListElement" itemtype="https://schema.org/ListItem" class="breadcrumbs__item breadcrumbs__item--active"><span class="breadcrumbs__link" itemprop="name">詳細設計書</span><meta itemprop="position" content="1"></li></ul></nav><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_ITEo"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><div class="theme-doc-markdown markdown"><header><h1>詳細設計書</h1></header>
+<p>主にUnreal Engineの設定内容を記載する</p>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="1-unreal-engineフォルダ構造">1. Unreal Engineフォルダ構造<a href="#1-unreal-engineフォルダ構造" class="hash-link" aria-label="Direct link to 1. Unreal Engineフォルダ構造" title="Direct link to 1. Unreal Engineフォルダ構造">​</a></h2>
+<ul>
+<li>📁 Content<!-- -->
+<ul>
+<li>📁 Blueprints(Blueprintクラスのオブジェクトを配置)<!-- -->
+<ul>
+<li>Actor<!-- -->
+<ul>
+<li>Ball_BP</li>
+<li>Balldestroyer_BP</li>
+<li>Brick_BP</li>
+</ul>
+</li>
+<li>Widget<!-- -->
+<ul>
+<li>LocalMultiplayerMenu_WB</li>
+<li>ModeSelect_WB</li>
+<li>PlayerHud_WB</li>
+<li>TitleMenu_WB</li>
+<li>Win_WB</li>
+</ul>
+</li>
+<li>Pawn<!-- -->
+<ul>
+<li>Paddle_Client_BP</li>
+<li>Paddle_Host_BP</li>
+</ul>
+</li>
+<li>PlayerController<!-- -->
+<ul>
+<li>PaddleController_BP</li>
+</ul>
+</li>
+<li>GameModeBase<!-- -->
+<ul>
+<li>Smashbrickers_gamemode</li>
+<li>Smashbrickers_gamemode_1P</li>
+</ul>
+</li>
+<li>GameInstance<!-- -->
+<ul>
+<li>SoundGameInstance</li>
+</ul>
+</li>
+<li>BluePrintFunctionLibrary<!-- -->
+<ul>
+<li>UI_FunctionLibrary</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>📁 Input<!-- -->
+<ul>
+<li>Input Action<!-- -->
+<ul>
+<li>Move_IA</li>
+</ul>
+</li>
+<li>Input Mapping Context<!-- -->
+<ul>
+<li>Smachbrickers_IMC</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>📁 Maps（レベルのファイルを配置）<!-- -->
+<ul>
+<li>level_1P</li>
+<li>level_2P</li>
+<li>mode_select_menu</li>
+<li>title_menu</li>
+<li>twoplayer_mode_menu</li>
+</ul>
+</li>
+<li>📁 Materials<!-- -->
+<ul>
+<li>Material<!-- -->
+<ul>
+<li>Glow_Mat</li>
+<li>Master_Mat</li>
+<li>Unlit_Mat</li>
+</ul>
+</li>
+<li>Material Instance Constant<!-- -->
+<ul>
+<li>Blueglowing_Mat</li>
+<li>Green_Inst</li>
+<li>Red_Inst</li>
+<li>Yellow_Inst</li>
+</ul>
+</li>
+<li>Physical Material<!-- -->
+<ul>
+<li>Bounce_Mat</li>
+</ul>
+</li>
+</ul>
+</li>
+<li>📁 Sounds(ゲーム内BGM,SEの音源を配置)<!-- -->
+<ul>
+<li>Button_Sound_Effect_10.mp3<!-- -->
+<ul>
+<li>音源取得元: <a href="https://soundeffect-lab.info/sound/button/" target="_blank" rel="noopener noreferrer">効果音ラボ</a>
+<ul>
+<li>決定ボタンを押す10 ゲームのスキル取得演出</li>
+</ul>
+</li>
+<li>メニューなどのボタンクリック音</li>
+</ul>
+</li>
+<li>Combat_Sound_Effect_4.mp3<!-- -->
+<ul>
+<li>ブロックの破壊音</li>
+</ul>
+</li>
+<li>Cursor_Move_Sound.mp3<!-- -->
+<ul>
+<li>ボールが壁やパドルに当たった時の音</li>
+</ul>
+</li>
+<li>Future_BGM.mp3<!-- -->
+<ul>
+<li>タイトルメニュー画面のBGM</li>
+</ul>
+</li>
+<li>MusMus-BGM-076.mp3<!-- -->
+<ul>
+<li>音源取得元: <a href="https://musmus.main.jp/music_game_03.html" target="_blank" rel="noopener noreferrer">フリーBGM・音楽素材MusMus</a>
+<ul>
+<li>ヒーローズ</li>
+</ul>
+</li>
+<li>ローカル２人対戦画面のBGM</li>
+</ul>
+</li>
+<li>MusMus-BGM-085.mp3<!-- -->
+<ul>
+<li>音源取得元: <a href="https://musmus.main.jp/music_game_02.html" target="_blank" rel="noopener noreferrer">フリーBGM・音楽素材MusMus</a>
+<ul>
+<li>「思考」 DBD file No.08</li>
+</ul>
+</li>
+<li>１人プレイ画面のBGM</li>
+</ul>
+</li>
+<li>MusMus-BGM-115.mp3<!-- -->
+<ul>
+<li>音源取得元: <a href="https://musmus.main.jp/music_game.html" target="_blank" rel="noopener noreferrer">フリーBGM・音楽素材MusMus</a>
+<ul>
+<li>隠密ファンク</li>
+</ul>
+</li>
+<li>プレイモード選択画面、ローカル２人対戦メニュー画面のBGM</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+</li>
+</ul>
+<h2 class="anchor anchorWithStickyNavbar_LWe7" id="2-各オブジェクトの設定">2. 各オブジェクトの設定<a href="#2-各オブジェクトの設定" class="hash-link" aria-label="Direct link to 2. 各オブジェクトの設定" title="Direct link to 2. 各オブジェクトの設定">​</a></h2>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="blueprintsactorball_bp">Blueprints/Actor/Ball_BP<a href="#blueprintsactorball_bp" class="hash-link" aria-label="Direct link to Blueprints/Actor/Ball_BP" title="Direct link to Blueprints/Actor/Ball_BP">​</a></h3>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="eventgraph">EventGraph<a href="#eventgraph" class="hash-link" aria-label="Direct link to EventGraph" title="Direct link to EventGraph">​</a></h4>
+<p><img decoding="async" loading="lazy" alt="Components" src="/smash-brickers/assets/images/Ball_BP_EventGraph_1-2bc05444b5a8c4a6cd407edb2aabe8ed.png" width="1266" height="1016" class="img_ev3q"></p>
+<ul>
+<li>UML - シーケンス図</li>
+</ul>
+<!-- -->
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="components">Components<a href="#components" class="hash-link" aria-label="Direct link to Components" title="Direct link to Components">​</a></h4>
+<p><img decoding="async" loading="lazy" alt="Components" src="/smash-brickers/assets/images/Ball_BP_Components-f395006f1ed5903daf3e7e4f8df4e564.png" width="576" height="1178" class="img_ev3q"></p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="class-defauls---details---show-only-modified-properties">Class Defauls - Details - Show Only Modified Properties<a href="#class-defauls---details---show-only-modified-properties" class="hash-link" aria-label="Direct link to Class Defauls - Details - Show Only Modified Properties" title="Direct link to Class Defauls - Details - Show Only Modified Properties">​</a></h4>
+<ul>
+<li>
+<p>Ball_BP(Self)
+<img decoding="async" loading="lazy" alt="Components" src="/smash-brickers/assets/images/Ball_BP_ClassDefaults_Ball_BP(Self)_Details-eb47094d0e235fa1d87d69f6f1797c83.png" width="868" height="314" class="img_ev3q"></p>
+</li>
+<li>
+<p>Sphere
+<img decoding="async" loading="lazy" alt="Components" src="/smash-brickers/assets/images/Ball_BP_ClassDefaults_Sphere_Details_1-0ffcfe0bb0afc71358e78dd61f0b2854.png" width="874" height="1762" class="img_ev3q"></p>
+</li>
+</ul>
+<p><img decoding="async" loading="lazy" alt="Components" src="/smash-brickers/assets/images/Ball_BP_ClassDefaults_Sphere_Details_2-1a414d1e84c9007001ba2a33e8abce02.png" width="858" height="252" class="img_ev3q"></p>
+<ul>
+<li>ProjectileMovement
+<img decoding="async" loading="lazy" alt="Components" src="/smash-brickers/assets/images/Ball_BP_ClassDefaults_ProjectileMovement_Details-12960d23797eb467924d18ecb419b51a.png" width="866" height="588" class="img_ev3q"></li>
+</ul>
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="blueprintsactorballdestroyer_bp">Blueprints/Actor/Balldestroyer_BP<a href="#blueprintsactorballdestroyer_bp" class="hash-link" aria-label="Direct link to Blueprints/Actor/Balldestroyer_BP" title="Direct link to Blueprints/Actor/Balldestroyer_BP">​</a></h3>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="eventgraph-1">EventGraph<a href="#eventgraph-1" class="hash-link" aria-label="Direct link to EventGraph" title="Direct link to EventGraph">​</a></h4>
+<p><img decoding="async" loading="lazy" alt="Components" src="/smash-brickers/assets/images/Balldestroyer_BP_EventGraph-b7dbdb33e9047bc28d3fddb7c68e802c.png" width="2654" height="822" class="img_ev3q"></p>
+<ul>
+<li>UML - アクティビティ図</li>
+</ul>
+<!-- -->
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="components-1">Components<a href="#components-1" class="hash-link" aria-label="Direct link to Components" title="Direct link to Components">​</a></h4>
+<p><img decoding="async" loading="lazy" alt="Components" src="/smash-brickers/assets/images/Balldestroyer_BP_Components-afbc817ce91f0bc3d523d4c89fe4b2dd.png" width="576" height="1248" class="img_ev3q"></p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="class-defauls---details---show-only-modified-properties-1">Class Defauls - Details - Show Only Modified Properties<a href="#class-defauls---details---show-only-modified-properties-1" class="hash-link" aria-label="Direct link to Class Defauls - Details - Show Only Modified Properties" title="Direct link to Class Defauls - Details - Show Only Modified Properties">​</a></h4>
+<ul>
+<li>Box</li>
+</ul>
+<p><img decoding="async" loading="lazy" alt="Components" src="/smash-brickers/assets/images/Balldestroyer_BP_ClassDefaults_Box_Details-d52b401933200dec99ec8b09b80bbca7.png" width="878" height="794" class="img_ev3q"></p>
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="blueprintsactorbrick_bp">Blueprints/Actor/Brick_BP<a href="#blueprintsactorbrick_bp" class="hash-link" aria-label="Direct link to Blueprints/Actor/Brick_BP" title="Direct link to Blueprints/Actor/Brick_BP">​</a></h3>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="eventgraph-2">EventGraph<a href="#eventgraph-2" class="hash-link" aria-label="Direct link to EventGraph" title="Direct link to EventGraph">​</a></h4>
+<p><img decoding="async" loading="lazy" alt="Components" src="/smash-brickers/assets/images/Brick_BP_EventGraph_1-b5717e2336b39baa0cb7fc6865ed3f40.png" width="2506" height="820" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="Components" src="/smash-brickers/assets/images/Brick_BP_EventGraph_2-cbd2ce2a6ba66134aee503fbab52b3c7.png" width="3426" height="776" class="img_ev3q"></p>
+<ul>
+<li>UML - アクティビティ図</li>
+</ul>
+<!-- -->
+<ul>
+<li>updatebrickcolor</li>
+</ul>
+<p><img decoding="async" loading="lazy" alt="Components" src="/smash-brickers/assets/images/Brick_BP_EventGraph_3-f8594ef7e7644ec064614e6eb513b1b0.png" width="1796" height="1406" class="img_ev3q"></p>
+<ul>
+<li>UML - アクティビティ図</li>
+</ul>
+<!-- -->
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="components-2">Components<a href="#components-2" class="hash-link" aria-label="Direct link to Components" title="Direct link to Components">​</a></h4>
+<p><img decoding="async" loading="lazy" alt="Components" src="/smash-brickers/assets/images/Brick_BP_Components-c420993cf83a0f8de4cb3d4f79a1849d.png" width="578" height="1020" class="img_ev3q"></p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="class-defauls---details---show-only-modified-properties-2">Class Defauls - Details - Show Only Modified Properties<a href="#class-defauls---details---show-only-modified-properties-2" class="hash-link" aria-label="Direct link to Class Defauls - Details - Show Only Modified Properties" title="Direct link to Class Defauls - Details - Show Only Modified Properties">​</a></h4>
+<ul>
+<li>Brick_BP(Self)</li>
+</ul>
+<p><img decoding="async" loading="lazy" alt="Components" src="/smash-brickers/assets/images/Brick_BP_ClassDefaults_Brick_BP(Self)_Details-c1a2161e0adb9616ccf7d5065fe8156e.png" width="860" height="362" class="img_ev3q"></p>
+<ul>
+<li>Brick_BP</li>
+</ul>
+<p><img decoding="async" loading="lazy" alt="Components" src="/smash-brickers/assets/images/Brick_BP_ClassDefaults_Cube_Details-ed24b4c19d6d9ebdb2ffda6101b7864b.png" width="858" height="1746" class="img_ev3q"></p>
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="blueprintswidgetlocalmultiplayermenu_wb">Blueprints/Widget/LocalMultiplayerMenu_WB<a href="#blueprintswidgetlocalmultiplayermenu_wb" class="hash-link" aria-label="Direct link to Blueprints/Widget/LocalMultiplayerMenu_WB" title="Direct link to Blueprints/Widget/LocalMultiplayerMenu_WB">​</a></h3>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="designer">Designer<a href="#designer" class="hash-link" aria-label="Direct link to Designer" title="Direct link to Designer">​</a></h4>
+<p><img decoding="async" loading="lazy" alt="Components" src="/smash-brickers/assets/images/LocalMultiplayerMenu_WB_Designer-05bbf1d95db8950c0a00ffa31d36bad0.png" width="2720" height="1492" class="img_ev3q"></p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="eventgraph-3">EventGraph<a href="#eventgraph-3" class="hash-link" aria-label="Direct link to EventGraph" title="Direct link to EventGraph">​</a></h4>
+<p><img decoding="async" loading="lazy" alt="Components" src="/smash-brickers/assets/images/LocalMultiplayerMenu_WB_EventGraph_1-9422853b1b65316274b63f414885f15c.png" width="672" height="1022" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="Components" src="/smash-brickers/assets/images/LocalMultiplayerMenu_WB_EventGraph_2-2c86e2bad5eaedd7ede7200c7e3e9a1b.png" width="1984" height="960" class="img_ev3q"></p>
+<!-- -->
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="blueprintswidgetmodeselect_wb">Blueprints/Widget/ModeSelect_WB<a href="#blueprintswidgetmodeselect_wb" class="hash-link" aria-label="Direct link to Blueprints/Widget/ModeSelect_WB" title="Direct link to Blueprints/Widget/ModeSelect_WB">​</a></h3>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="designer-1">Designer<a href="#designer-1" class="hash-link" aria-label="Direct link to Designer" title="Direct link to Designer">​</a></h4>
+<p><img decoding="async" loading="lazy" alt="Components" src="/smash-brickers/assets/images/ModeSelect_WB_Designer-2b9827e901d4fae7e552594432a3755e.png" width="2352" height="1498" class="img_ev3q"></p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="eventgraph-4">EventGraph<a href="#eventgraph-4" class="hash-link" aria-label="Direct link to EventGraph" title="Direct link to EventGraph">​</a></h4>
+<p><img decoding="async" loading="lazy" alt="Components" src="/smash-brickers/assets/images/ModeSelect_WB_EventGraph_1-e8ce96a8014ec98be19e160bb11ff542.png" width="674" height="828" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="Components" src="/smash-brickers/assets/images/ModeSelect_WB_EventGraph_2-5de51dcfaf05771bf75faa3496c21600.png" width="1682" height="1490" class="img_ev3q"></p>
+<!-- -->
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="blueprintswidgetplayerhud_wb">Blueprints/Widget/PlayerHud_WB<a href="#blueprintswidgetplayerhud_wb" class="hash-link" aria-label="Direct link to Blueprints/Widget/PlayerHud_WB" title="Direct link to Blueprints/Widget/PlayerHud_WB">​</a></h3>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="designer-2">Designer<a href="#designer-2" class="hash-link" aria-label="Direct link to Designer" title="Direct link to Designer">​</a></h4>
+<p><img decoding="async" loading="lazy" alt="Components" src="/smash-brickers/assets/images/PlayerHub_WB_Designer-8121362f1380e4940a2ce66b5f700267.png" width="2298" height="1178" class="img_ev3q"></p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="eventgraph-5">EventGraph<a href="#eventgraph-5" class="hash-link" aria-label="Direct link to EventGraph" title="Direct link to EventGraph">​</a></h4>
+<p>設定なし</p>
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="blueprintswidgettitlemenu_wb">Blueprints/Widget/TitleMenu_WB<a href="#blueprintswidgettitlemenu_wb" class="hash-link" aria-label="Direct link to Blueprints/Widget/TitleMenu_WB" title="Direct link to Blueprints/Widget/TitleMenu_WB">​</a></h3>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="designer-3">Designer<a href="#designer-3" class="hash-link" aria-label="Direct link to Designer" title="Direct link to Designer">​</a></h4>
+<p><img decoding="async" loading="lazy" alt="Components" src="/smash-brickers/assets/images/TitleMenu_WB_Designer-f28b76607449e5f13c637a9e56a7cc89.png" width="2976" height="1498" class="img_ev3q"></p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="eventgraph-6">EventGraph<a href="#eventgraph-6" class="hash-link" aria-label="Direct link to EventGraph" title="Direct link to EventGraph">​</a></h4>
+<p><img decoding="async" loading="lazy" alt="Components" src="/smash-brickers/assets/images/TitleMenu_WB_EventGraph_1-627c9cb809429736e9ae4bdf2874d87d.png" width="688" height="938" class="img_ev3q"></p>
+<p><img decoding="async" loading="lazy" alt="Components" src="/smash-brickers/assets/images/TitleMenu_WB_EventGraph_2-0768411ec86a539e783cdda9ea87ec33.png" width="1556" height="1070" class="img_ev3q"></p>
+<!-- -->
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="blueprintswidgetwin_wb">Blueprints/Widget/Win_WB<a href="#blueprintswidgetwin_wb" class="hash-link" aria-label="Direct link to Blueprints/Widget/Win_WB" title="Direct link to Blueprints/Widget/Win_WB">​</a></h3>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="designer-4">Designer<a href="#designer-4" class="hash-link" aria-label="Direct link to Designer" title="Direct link to Designer">​</a></h4>
+<p><img decoding="async" loading="lazy" alt="Components" src="/smash-brickers/assets/images/Win_WB_Designer-49f8a68b67fbe2230207f182007e664b.png" width="2754" height="1624" class="img_ev3q"></p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="eventgraph-7">EventGraph<a href="#eventgraph-7" class="hash-link" aria-label="Direct link to EventGraph" title="Direct link to EventGraph">​</a></h4>
+<p><img decoding="async" loading="lazy" alt="Components" src="/smash-brickers/assets/images/Win_WB_EventGraph-caa228d0eb7f8c3d9673fd146f76bf2c.png" width="3694" height="1498" class="img_ev3q"></p>
+<!-- -->
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="blueprintspawnpaddle_client_bp">Blueprints/Pawn/Paddle_Client_BP<a href="#blueprintspawnpaddle_client_bp" class="hash-link" aria-label="Direct link to Blueprints/Pawn/Paddle_Client_BP" title="Direct link to Blueprints/Pawn/Paddle_Client_BP">​</a></h3>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="eventgraph-8">EventGraph<a href="#eventgraph-8" class="hash-link" aria-label="Direct link to EventGraph" title="Direct link to EventGraph">​</a></h4>
+<p><img decoding="async" loading="lazy" alt="EventGraph" src="/smash-brickers/assets/images/Paddle_Client_WB_EventGraph-ab6c9372f7085760d3abddf90e5bbeb4.png" width="2148" height="1094" class="img_ev3q"></p>
+<ul>
+<li>UML - アクティビティ図</li>
+</ul>
+<!-- -->
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="components-3">Components<a href="#components-3" class="hash-link" aria-label="Direct link to Components" title="Direct link to Components">​</a></h4>
+<p><img decoding="async" loading="lazy" alt="EventGraph" src="/smash-brickers/assets/images/Paddle_Client_BP_Components-ffcef73d1a14e28607bb79741c33285a.png" width="522" height="1246" class="img_ev3q"></p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="class-defauls---details---show-only-modified-properties-3">Class Defauls - Details - Show Only Modified Properties<a href="#class-defauls---details---show-only-modified-properties-3" class="hash-link" aria-label="Direct link to Class Defauls - Details - Show Only Modified Properties" title="Direct link to Class Defauls - Details - Show Only Modified Properties">​</a></h4>
+<p><img decoding="async" loading="lazy" alt="EventGraph" src="/smash-brickers/assets/images/Paddle_Client_BP_ClassDefaults_Paddle_Details-2f7ab1e6ed1a5584ea72b294f61dfdcd.png" width="868" height="1116" class="img_ev3q"></p>
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="blueprintspawnpaddle_host_bp">Blueprints/Pawn/Paddle_Host_BP<a href="#blueprintspawnpaddle_host_bp" class="hash-link" aria-label="Direct link to Blueprints/Pawn/Paddle_Host_BP" title="Direct link to Blueprints/Pawn/Paddle_Host_BP">​</a></h3>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="eventgraph-9">EventGraph<a href="#eventgraph-9" class="hash-link" aria-label="Direct link to EventGraph" title="Direct link to EventGraph">​</a></h4>
+<p><img decoding="async" loading="lazy" alt="EventGraph" src="/smash-brickers/assets/images/Paddle_Host_WB_EventGraph-578f277653e4e3504f8106a599569a80.png" width="3056" height="980" class="img_ev3q"></p>
+<ul>
+<li>UML - アクティビティ図</li>
+</ul>
+<!-- -->
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="components-4">Components<a href="#components-4" class="hash-link" aria-label="Direct link to Components" title="Direct link to Components">​</a></h4>
+<p><img decoding="async" loading="lazy" alt="EventGraph" src="/smash-brickers/assets/images/Paddle_Host_BP_Components-da1d2d1b93ba2c723a50274b2246bc0b.png" width="530" height="1056" class="img_ev3q"></p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="class-defauls---details---show-only-modified-properties-4">Class Defauls - Details - Show Only Modified Properties<a href="#class-defauls---details---show-only-modified-properties-4" class="hash-link" aria-label="Direct link to Class Defauls - Details - Show Only Modified Properties" title="Direct link to Class Defauls - Details - Show Only Modified Properties">​</a></h4>
+<p><img decoding="async" loading="lazy" alt="EventGraph" src="/smash-brickers/assets/images/Paddle_Host_BP_ClassDefaults_Paddle_Details-f0e56fc3d1f573fe5120cd23434e5edf.png" width="864" height="1156" class="img_ev3q"></p>
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="blueprintsplayercontrollerpaddlecontroller_bp">Blueprints/PlayerController/PaddleController_BP<a href="#blueprintsplayercontrollerpaddlecontroller_bp" class="hash-link" aria-label="Direct link to Blueprints/PlayerController/PaddleController_BP" title="Direct link to Blueprints/PlayerController/PaddleController_BP">​</a></h3>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="eventgraph-10">EventGraph<a href="#eventgraph-10" class="hash-link" aria-label="Direct link to EventGraph" title="Direct link to EventGraph">​</a></h4>
+<p><img decoding="async" loading="lazy" alt="EventGraph" src="/smash-brickers/assets/images/PaddleController_BP_EventGraph-55622dac1c823b92cc51231d5e95a0d6.png" width="2434" height="548" class="img_ev3q"></p>
+<ul>
+<li>UML - アクティビティ図</li>
+</ul>
+<!-- -->
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="blueprintsgamemodebasesmashbrickers_gamemode">Blueprints/GameModeBase/Smashbrickers_gamemode<a href="#blueprintsgamemodebasesmashbrickers_gamemode" class="hash-link" aria-label="Direct link to Blueprints/GameModeBase/Smashbrickers_gamemode" title="Direct link to Blueprints/GameModeBase/Smashbrickers_gamemode">​</a></h3>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="eventgraph-11">EventGraph<a href="#eventgraph-11" class="hash-link" aria-label="Direct link to EventGraph" title="Direct link to EventGraph">​</a></h4>
+<p><img decoding="async" loading="lazy" alt="EventGraph" src="/smash-brickers/assets/images/Smashbrickers_gamemode_EvenetGraph_1-b9b173bb1b9e0b78df42acd10809530b.png" width="2228" height="668" class="img_ev3q"></p>
+<ul>
+<li>UML - シーケンス図</li>
+</ul>
+<!-- -->
+<p><img decoding="async" loading="lazy" alt="EventGraph" src="/smash-brickers/assets/images/Smashbrickers_gamemode_EvenetGraph_2-459632c9ef356b1c4da4d15597931d39.png" width="2944" height="984" class="img_ev3q"></p>
+<ul>
+<li>UML - シーケンス図</li>
+</ul>
+<!-- -->
+<p><img decoding="async" loading="lazy" alt="EventGraph" src="/smash-brickers/assets/images/Smashbrickers_gamemode_EvenetGraph_3-b21379916396bb217282c173f3c405c2.png" width="2310" height="1480" class="img_ev3q"></p>
+<ul>
+<li>UML - アクティビティ図</li>
+</ul>
+<!-- -->
+<!-- -->
+<!-- -->
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="components-5">Components<a href="#components-5" class="hash-link" aria-label="Direct link to Components" title="Direct link to Components">​</a></h4>
+<p><img decoding="async" loading="lazy" alt="EventGraph" src="/smash-brickers/assets/images/Smashbrickers_gamemode_Components-ffc1383b35eb32c9eb9cef3eaffb4571.png" width="714" height="1250" class="img_ev3q"></p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="class-defauls---details---show-only-modified-properties-5">Class Defauls - Details - Show Only Modified Properties<a href="#class-defauls---details---show-only-modified-properties-5" class="hash-link" aria-label="Direct link to Class Defauls - Details - Show Only Modified Properties" title="Direct link to Class Defauls - Details - Show Only Modified Properties">​</a></h4>
+<p><img decoding="async" loading="lazy" alt="EventGraph" src="/smash-brickers/assets/images/Smashbrickers_gamemode_ClassDefaults_Smashbrickers_gamemode(Self)_Details-43dedaf64e86eaad0fa310acd45c3564.png" width="954" height="308" class="img_ev3q"></p>
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="blueprintsgamemodebasesmashbrickers_gamemode_1p">Blueprints/GameModeBase/Smashbrickers_gamemode_1P<a href="#blueprintsgamemodebasesmashbrickers_gamemode_1p" class="hash-link" aria-label="Direct link to Blueprints/GameModeBase/Smashbrickers_gamemode_1P" title="Direct link to Blueprints/GameModeBase/Smashbrickers_gamemode_1P">​</a></h3>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="eventgraph-12">EventGraph<a href="#eventgraph-12" class="hash-link" aria-label="Direct link to EventGraph" title="Direct link to EventGraph">​</a></h4>
+<p><img decoding="async" loading="lazy" alt="EventGraph" src="/smash-brickers/assets/images/Smashbrickers_gamemode_1P_EvenetGraph_1-7dc61989b153cdb6485b831d4c64669c.png" width="3084" height="638" class="img_ev3q"></p>
+<ul>
+<li>UML - シーケンス図</li>
+</ul>
+<!-- -->
+<p><img decoding="async" loading="lazy" alt="EventGraph" src="/smash-brickers/assets/images/Smashbrickers_gamemode_1P_EvenetGraph_2-f8900e19619b5f76e128e213fde8a1dd.png" width="2644" height="1206" class="img_ev3q"></p>
+<ul>
+<li>UML - アクティビティ図</li>
+</ul>
+<!-- -->
+<ul>
+<li>UML - アクティビティ図</li>
+</ul>
+<!-- -->
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="components-6">Components<a href="#components-6" class="hash-link" aria-label="Direct link to Components" title="Direct link to Components">​</a></h4>
+<p><img decoding="async" loading="lazy" alt="EventGraph" src="/smash-brickers/assets/images/Smashbrickers_gamemode_1P_Components-66e411882ce6360224e942d46c6e64bf.png" width="724" height="1262" class="img_ev3q"></p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="class-defauls---details---show-only-modified-properties-6">Class Defauls - Details - Show Only Modified Properties<a href="#class-defauls---details---show-only-modified-properties-6" class="hash-link" aria-label="Direct link to Class Defauls - Details - Show Only Modified Properties" title="Direct link to Class Defauls - Details - Show Only Modified Properties">​</a></h4>
+<p><img decoding="async" loading="lazy" alt="EventGraph" src="/smash-brickers/assets/images/Smashbrickers_gamemode_1P_ClassDefaults_Smashbrickers_gamemode(Self)_Details-81c0ac7642f8589268b3908e3c6b770e.png" width="922" height="350" class="img_ev3q"></p>
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="blueprintsgameinstancesoundgameinstance">Blueprints/GameInstance/SoundGameInstance<a href="#blueprintsgameinstancesoundgameinstance" class="hash-link" aria-label="Direct link to Blueprints/GameInstance/SoundGameInstance" title="Direct link to Blueprints/GameInstance/SoundGameInstance">​</a></h3>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="functions">Functions<a href="#functions" class="hash-link" aria-label="Direct link to Functions" title="Direct link to Functions">​</a></h4>
+<p><img decoding="async" loading="lazy" alt="EventGraph" src="/smash-brickers/assets/images/SoundGameInstance_Functions-d184f872380d747e43889a4134ce5819.png" width="1020" height="392" class="img_ev3q"></p>
+<ul>
+<li>UML - アクティビティ図</li>
+</ul>
+<!-- -->
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="blueprintsblueprintfunctionlibraryui_functionlibrary">Blueprints/BluePrintFunctionLibrary/UI_FunctionLibrary<a href="#blueprintsblueprintfunctionlibraryui_functionlibrary" class="hash-link" aria-label="Direct link to Blueprints/BluePrintFunctionLibrary/UI_FunctionLibrary" title="Direct link to Blueprints/BluePrintFunctionLibrary/UI_FunctionLibrary">​</a></h3>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="functions-1">Functions<a href="#functions-1" class="hash-link" aria-label="Direct link to Functions" title="Direct link to Functions">​</a></h4>
+<p><img decoding="async" loading="lazy" alt="EventGraph" src="/smash-brickers/assets/images/UI_FunctionLibrary_Functions-acff8289dd257e80ae3e3598781b202f.png" width="1800" height="504" class="img_ev3q"></p>
+<ul>
+<li>UML - アクティビティ図</li>
+</ul>
+<!-- -->
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="inputinput-actionmove_ia">Input/Input Action/Move_IA<a href="#inputinput-actionmove_ia" class="hash-link" aria-label="Direct link to Input/Input Action/Move_IA" title="Direct link to Input/Input Action/Move_IA">​</a></h3>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="details">Details<a href="#details" class="hash-link" aria-label="Direct link to Details" title="Direct link to Details">​</a></h4>
+<p><img decoding="async" loading="lazy" alt="EventGraph" src="/smash-brickers/assets/images/Move_IA_Details-ac4c471a3d73ee2d4348fa36eea60092.png" width="776" height="292" class="img_ev3q"></p>
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="inputinput-mapping-contextsmachbrickers_imc">Input/Input Mapping Context/Smachbrickers_IMC<a href="#inputinput-mapping-contextsmachbrickers_imc" class="hash-link" aria-label="Direct link to Input/Input Mapping Context/Smachbrickers_IMC" title="Direct link to Input/Input Mapping Context/Smachbrickers_IMC">​</a></h3>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="details-1">Details<a href="#details-1" class="hash-link" aria-label="Direct link to Details" title="Direct link to Details">​</a></h4>
+<p><img decoding="async" loading="lazy" alt="EventGraph" src="/smash-brickers/assets/images/Smachbrickers_IMC_Details-fd35d6304fad1bc300e97aafe57a026c.png" width="1232" height="918" class="img_ev3q"></p>
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="mapslevel_1p">Maps/level_1P<a href="#mapslevel_1p" class="hash-link" aria-label="Direct link to Maps/level_1P" title="Direct link to Maps/level_1P">​</a></h3>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="item">Item<a href="#item" class="hash-link" aria-label="Direct link to Item" title="Direct link to Item">​</a></h4>
+<p><img decoding="async" loading="lazy" alt="EventGraph" src="/smash-brickers/assets/images/level_1P_Item-1a67e0a40cf236f00f01c4df73bfdf55.png" width="2850" height="1694" class="img_ev3q"></p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="eventgraph-13">EventGraph<a href="#eventgraph-13" class="hash-link" aria-label="Direct link to EventGraph" title="Direct link to EventGraph">​</a></h4>
+<p><img decoding="async" loading="lazy" alt="EventGraph" src="/smash-brickers/assets/images/level_1P_EventGraph-5355522616caf737812ba9663e48abdd.png" width="978" height="408" class="img_ev3q"></p>
+<ul>
+<li>UML - アクティビティ図</li>
+</ul>
+<!-- -->
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="mapslevel_2p">Maps/level_2P<a href="#mapslevel_2p" class="hash-link" aria-label="Direct link to Maps/level_2P" title="Direct link to Maps/level_2P">​</a></h3>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="item-1">Item<a href="#item-1" class="hash-link" aria-label="Direct link to Item" title="Direct link to Item">​</a></h4>
+<p><img decoding="async" loading="lazy" alt="EventGraph" src="/smash-brickers/assets/images/level_2P_Item-01fc46047190d71121a5aa4f97a6263c.png" width="3794" height="1904" class="img_ev3q"></p>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="eventgraph-14">EventGraph<a href="#eventgraph-14" class="hash-link" aria-label="Direct link to EventGraph" title="Direct link to EventGraph">​</a></h4>
+<p><img decoding="async" loading="lazy" alt="EventGraph" src="/smash-brickers/assets/images/level_2P_EventGraph-fb85cbff910686b8e00cb93e2adfbb71.png" width="994" height="394" class="img_ev3q"></p>
+<ul>
+<li>UML - アクティビティ図</li>
+</ul>
+<!-- -->
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="mapsmode_select_menu">Maps/mode_select_menu<a href="#mapsmode_select_menu" class="hash-link" aria-label="Direct link to Maps/mode_select_menu" title="Direct link to Maps/mode_select_menu">​</a></h3>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="eventgraph-15">EventGraph<a href="#eventgraph-15" class="hash-link" aria-label="Direct link to EventGraph" title="Direct link to EventGraph">​</a></h4>
+<p><img decoding="async" loading="lazy" alt="EventGraph" src="/smash-brickers/assets/images/mode_select_menu_EventGraph-2bfc0bd4340df5c5a96c018d70a230eb.png" width="2218" height="462" class="img_ev3q"></p>
+<ul>
+<li>UML - アクティビティ図</li>
+</ul>
+<!-- -->
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="mapstitle_menu">Maps/title_menu<a href="#mapstitle_menu" class="hash-link" aria-label="Direct link to Maps/title_menu" title="Direct link to Maps/title_menu">​</a></h3>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="eventgraph-16">EventGraph<a href="#eventgraph-16" class="hash-link" aria-label="Direct link to EventGraph" title="Direct link to EventGraph">​</a></h4>
+<p><img decoding="async" loading="lazy" alt="EventGraph" src="/smash-brickers/assets/images/title_menu_EventGraph-e69d206ed08af8667936f8c7129cf6b5.png" width="2120" height="418" class="img_ev3q"></p>
+<ul>
+<li>UML - アクティビティ図</li>
+</ul>
+<!-- -->
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="mapstwoplayer_mode_menu">Maps/twoplayer_mode_menu<a href="#mapstwoplayer_mode_menu" class="hash-link" aria-label="Direct link to Maps/twoplayer_mode_menu" title="Direct link to Maps/twoplayer_mode_menu">​</a></h3>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="eventgraph-17">EventGraph<a href="#eventgraph-17" class="hash-link" aria-label="Direct link to EventGraph" title="Direct link to EventGraph">​</a></h4>
+<p><img decoding="async" loading="lazy" alt="EventGraph" src="/smash-brickers/assets/images/twoplayer_mode_menu_EventGraph-a36e2f5cb19319e46a08ec7ad460e24e.png" width="2320" height="444" class="img_ev3q"></p>
+<ul>
+<li>UML - アクティビティ図</li>
+</ul>
+<!-- -->
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="materialsmaterialglow_mat">Materials/Material/Glow_Mat<a href="#materialsmaterialglow_mat" class="hash-link" aria-label="Direct link to Materials/Material/Glow_Mat" title="Direct link to Materials/Material/Glow_Mat">​</a></h3>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="parameters">Parameters<a href="#parameters" class="hash-link" aria-label="Direct link to Parameters" title="Direct link to Parameters">​</a></h4>
+<p><img decoding="async" loading="lazy" alt="Parameters" src="/smash-brickers/assets/images/Glow_Mat_Parameters-dbc2c0ba57d0f6a1b3e103da81716fd5.png" width="696" height="1092" class="img_ev3q"></p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="materialgraph">MaterialGraph<a href="#materialgraph" class="hash-link" aria-label="Direct link to MaterialGraph" title="Direct link to MaterialGraph">​</a></h3>
+<p><img decoding="async" loading="lazy" alt="MaterialGraph" src="/smash-brickers/assets/images/Glow_Mat_MaterialGraph-ff1bf375e83241ce49fe36631dcc7492.png" width="1082" height="1092" class="img_ev3q"></p>
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="materialsmaterialmaster_mat">Materials/Material/Master_Mat<a href="#materialsmaterialmaster_mat" class="hash-link" aria-label="Direct link to Materials/Material/Master_Mat" title="Direct link to Materials/Material/Master_Mat">​</a></h3>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="parameters-1">Parameters<a href="#parameters-1" class="hash-link" aria-label="Direct link to Parameters" title="Direct link to Parameters">​</a></h4>
+<p><img decoding="async" loading="lazy" alt="Parameters" src="/smash-brickers/assets/images/Master_Mat_Parameters-0e8b224f1731f76ed08594281f0b2316.png" width="700" height="1030" class="img_ev3q"></p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="materialgraph-1">MaterialGraph<a href="#materialgraph-1" class="hash-link" aria-label="Direct link to MaterialGraph" title="Direct link to MaterialGraph">​</a></h3>
+<p><img decoding="async" loading="lazy" alt="MaterialGraph" src="/smash-brickers/assets/images/Master_Mat_MaterialGraph-39ab721f068f924a81d6f0e4ae19786c.png" width="832" height="1156" class="img_ev3q"></p>
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="materialsmaterialunlit_mat">Materials/Material/Unlit_Mat<a href="#materialsmaterialunlit_mat" class="hash-link" aria-label="Direct link to Materials/Material/Unlit_Mat" title="Direct link to Materials/Material/Unlit_Mat">​</a></h3>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="parameters-2">Parameters<a href="#parameters-2" class="hash-link" aria-label="Direct link to Parameters" title="Direct link to Parameters">​</a></h4>
+<p><img decoding="async" loading="lazy" alt="Parameters" src="/smash-brickers/assets/images/Unlit_Mat_Parameters-071afa9e9a9d2cb9984226230cd9bfc1.png" width="706" height="1104" class="img_ev3q"></p>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="materialgraph-2">MaterialGraph<a href="#materialgraph-2" class="hash-link" aria-label="Direct link to MaterialGraph" title="Direct link to MaterialGraph">​</a></h3>
+<p><img decoding="async" loading="lazy" alt="MaterialGraph" src="/smash-brickers/assets/images/Unlit_Mat_MaterialGraph-868434a0d1fa53a883d710c1dfcf1c41.png" width="884" height="1106" class="img_ev3q"></p>
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="materialsmaterial-instance-constantblueglowing_mat">Materials/Material Instance Constant/Blueglowing_Mat<a href="#materialsmaterial-instance-constantblueglowing_mat" class="hash-link" aria-label="Direct link to Materials/Material Instance Constant/Blueglowing_Mat" title="Direct link to Materials/Material Instance Constant/Blueglowing_Mat">​</a></h3>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="details-2">Details<a href="#details-2" class="hash-link" aria-label="Direct link to Details" title="Direct link to Details">​</a></h4>
+<p><img decoding="async" loading="lazy" alt="Details" src="/smash-brickers/assets/images/Blueglowing_Mat_Details-af1c514bc434ebe893c36e33941628fe.png" width="3534" height="1348" class="img_ev3q"></p>
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="materialsmaterial-instance-constantgreen_inst">Materials/Material Instance Constant/Green_Inst<a href="#materialsmaterial-instance-constantgreen_inst" class="hash-link" aria-label="Direct link to Materials/Material Instance Constant/Green_Inst" title="Direct link to Materials/Material Instance Constant/Green_Inst">​</a></h3>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="details-3">Details<a href="#details-3" class="hash-link" aria-label="Direct link to Details" title="Direct link to Details">​</a></h4>
+<p><img decoding="async" loading="lazy" alt="Details" src="/smash-brickers/assets/images/Green_Inst_details-811bc02d6a97ad799c078d690b5d5fcf.png" width="3044" height="1362" class="img_ev3q"></p>
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="materialsmaterial-instance-constantred_inst">Materials/Material Instance Constant/Red_Inst<a href="#materialsmaterial-instance-constantred_inst" class="hash-link" aria-label="Direct link to Materials/Material Instance Constant/Red_Inst" title="Direct link to Materials/Material Instance Constant/Red_Inst">​</a></h3>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="details-4">Details<a href="#details-4" class="hash-link" aria-label="Direct link to Details" title="Direct link to Details">​</a></h4>
+<p><img decoding="async" loading="lazy" alt="Details" src="/smash-brickers/assets/images/Red_Inst_Details-c857b5d565a6a3d59e8f3205bc7ff776.png" width="2820" height="1442" class="img_ev3q"></p>
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="materialsmaterial-instance-constantyellow_inst">Materials/Material Instance Constant/Yellow_Inst<a href="#materialsmaterial-instance-constantyellow_inst" class="hash-link" aria-label="Direct link to Materials/Material Instance Constant/Yellow_Inst" title="Direct link to Materials/Material Instance Constant/Yellow_Inst">​</a></h3>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="details-5">Details<a href="#details-5" class="hash-link" aria-label="Direct link to Details" title="Direct link to Details">​</a></h4>
+<p><img decoding="async" loading="lazy" alt="Details" src="/smash-brickers/assets/images/Yellow_Inst_Details-63686bcd17c80dee1f7ef59002706cdc.png" width="2916" height="1422" class="img_ev3q"></p>
+<hr>
+<h3 class="anchor anchorWithStickyNavbar_LWe7" id="materialsphysical-materialbounce_mat">Materials/Physical Material/Bounce_Mat<a href="#materialsphysical-materialbounce_mat" class="hash-link" aria-label="Direct link to Materials/Physical Material/Bounce_Mat" title="Direct link to Materials/Physical Material/Bounce_Mat">​</a></h3>
+<h4 class="anchor anchorWithStickyNavbar_LWe7" id="details-6">Details<a href="#details-6" class="hash-link" aria-label="Direct link to Details" title="Direct link to Details">​</a></h4>
+<p><img decoding="async" loading="lazy" alt="Details" src="/smash-brickers/assets/images/Bounce_Mat_Details-6f3f290e49932d94c54728c413025a54.png" width="892" height="398" class="img_ev3q"></p></div><footer class="theme-doc-footer docusaurus-mt-lg"><div class="row margin-top--sm theme-doc-footer-edit-meta-row"><div class="col"><a href="https://github.com/facebook/docusaurus/tree/main/packages/create-docusaurus/templates/shared/docs/design-docs/50_detailed-design.md" target="_blank" rel="noopener noreferrer" class="theme-edit-this-page"><svg fill="currentColor" height="20" width="20" viewBox="0 0 40 40" class="iconEdit_Z9Sw" aria-hidden="true"><g><path d="m34.5 11.7l-3 3.1-6.3-6.3 3.1-3q0.5-0.5 1.2-0.5t1.1 0.5l3.9 3.9q0.5 0.4 0.5 1.1t-0.5 1.2z m-29.5 17.1l18.4-18.5 6.3 6.3-18.4 18.4h-6.3v-6.2z"></path></g></svg>Edit this page</a></div><div class="col lastUpdated_JAkA"></div></div></footer></article><nav class="pagination-nav docusaurus-mt-lg" aria-label="Docs pages"><a class="pagination-nav__link pagination-nav__link--prev" href="/smash-brickers/docs/design-docs/system-architecture-design"><div class="pagination-nav__sublabel">Previous</div><div class="pagination-nav__label">システムアーキテクチャ設計書</div></a><a class="pagination-nav__link pagination-nav__link--next" href="/smash-brickers/docs/design-docs/development-environment"><div class="pagination-nav__sublabel">Next</div><div class="pagination-nav__label">開発環境</div></a></nav></div></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar theme-doc-toc-desktop"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#1-unreal-engineフォルダ構造" class="table-of-contents__link toc-highlight">1. Unreal Engineフォルダ構造</a></li><li><a href="#2-各オブジェクトの設定" class="table-of-contents__link toc-highlight">2. 各オブジェクトの設定</a><ul><li><a href="#blueprintsactorball_bp" class="table-of-contents__link toc-highlight">Blueprints/Actor/Ball_BP</a></li><li><a href="#blueprintsactorballdestroyer_bp" class="table-of-contents__link toc-highlight">Blueprints/Actor/Balldestroyer_BP</a></li><li><a href="#blueprintsactorbrick_bp" class="table-of-contents__link toc-highlight">Blueprints/Actor/Brick_BP</a></li><li><a href="#blueprintswidgetlocalmultiplayermenu_wb" class="table-of-contents__link toc-highlight">Blueprints/Widget/LocalMultiplayerMenu_WB</a></li><li><a href="#blueprintswidgetmodeselect_wb" class="table-of-contents__link toc-highlight">Blueprints/Widget/ModeSelect_WB</a></li><li><a href="#blueprintswidgetplayerhud_wb" class="table-of-contents__link toc-highlight">Blueprints/Widget/PlayerHud_WB</a></li><li><a href="#blueprintswidgettitlemenu_wb" class="table-of-contents__link toc-highlight">Blueprints/Widget/TitleMenu_WB</a></li><li><a href="#blueprintswidgetwin_wb" class="table-of-contents__link toc-highlight">Blueprints/Widget/Win_WB</a></li><li><a href="#blueprintspawnpaddle_client_bp" class="table-of-contents__link toc-highlight">Blueprints/Pawn/Paddle_Client_BP</a></li><li><a href="#blueprintspawnpaddle_host_bp" class="table-of-contents__link toc-highlight">Blueprints/Pawn/Paddle_Host_BP</a></li><li><a href="#blueprintsplayercontrollerpaddlecontroller_bp" class="table-of-contents__link toc-highlight">Blueprints/PlayerController/PaddleController_BP</a></li><li><a href="#blueprintsgamemodebasesmashbrickers_gamemode" class="table-of-contents__link toc-highlight">Blueprints/GameModeBase/Smashbrickers_gamemode</a></li><li><a href="#blueprintsgamemodebasesmashbrickers_gamemode_1p" class="table-of-contents__link toc-highlight">Blueprints/GameModeBase/Smashbrickers_gamemode_1P</a></li><li><a href="#blueprintsgameinstancesoundgameinstance" class="table-of-contents__link toc-highlight">Blueprints/GameInstance/SoundGameInstance</a></li><li><a href="#blueprintsblueprintfunctionlibraryui_functionlibrary" class="table-of-contents__link toc-highlight">Blueprints/BluePrintFunctionLibrary/UI_FunctionLibrary</a></li><li><a href="#inputinput-actionmove_ia" class="table-of-contents__link toc-highlight">Input/Input Action/Move_IA</a></li><li><a href="#inputinput-mapping-contextsmachbrickers_imc" class="table-of-contents__link toc-highlight">Input/Input Mapping Context/Smachbrickers_IMC</a></li><li><a href="#mapslevel_1p" class="table-of-contents__link toc-highlight">Maps/level_1P</a></li><li><a href="#mapslevel_2p" class="table-of-contents__link toc-highlight">Maps/level_2P</a></li><li><a href="#mapsmode_select_menu" class="table-of-contents__link toc-highlight">Maps/mode_select_menu</a></li><li><a href="#mapstitle_menu" class="table-of-contents__link toc-highlight">Maps/title_menu</a></li><li><a href="#mapstwoplayer_mode_menu" class="table-of-contents__link toc-highlight">Maps/twoplayer_mode_menu</a></li><li><a href="#materialsmaterialglow_mat" class="table-of-contents__link toc-highlight">Materials/Material/Glow_Mat</a></li><li><a href="#materialgraph" class="table-of-contents__link toc-highlight">MaterialGraph</a></li><li><a href="#materialsmaterialmaster_mat" class="table-of-contents__link toc-highlight">Materials/Material/Master_Mat</a></li><li><a href="#materialgraph-1" class="table-of-contents__link toc-highlight">MaterialGraph</a></li><li><a href="#materialsmaterialunlit_mat" class="table-of-contents__link toc-highlight">Materials/Material/Unlit_Mat</a></li><li><a href="#materialgraph-2" class="table-of-contents__link toc-highlight">MaterialGraph</a></li><li><a href="#materialsmaterial-instance-constantblueglowing_mat" class="table-of-contents__link toc-highlight">Materials/Material Instance Constant/Blueglowing_Mat</a></li><li><a href="#materialsmaterial-instance-constantgreen_inst" class="table-of-contents__link toc-highlight">Materials/Material Instance Constant/Green_Inst</a></li><li><a href="#materialsmaterial-instance-constantred_inst" class="table-of-contents__link toc-highlight">Materials/Material Instance Constant/Red_Inst</a></li><li><a href="#materialsmaterial-instance-constantyellow_inst" class="table-of-contents__link toc-highlight">Materials/Material Instance Constant/Yellow_Inst</a></li><li><a href="#materialsphysical-materialbounce_mat" class="table-of-contents__link toc-highlight">Materials/Physical Material/Bounce_Mat</a></li></ul></li></ul></div></div></div></div></main></div></div></div><footer class="footer footer--dark"><div class="container container-fluid"><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2025 Smash Brickers. Built with Docusaurus.</div></div></div></footer></div>
+</body>
+</html>

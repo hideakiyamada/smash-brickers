@@ -6,7 +6,7 @@
     <generator>https://github.com/jpmonette/feed</generator>
     <link rel="alternate" href="https://smash-brickers.github.io/smash-brickers/blog"/>
     <subtitle>Smash Brickers Blog</subtitle>
-    <icon>https://smash-brickers.github.io/smash-brickers/img/favicon.ico</icon>
+    <icon>https://smash-brickers.github.io/smash-brickers/img/logo-smash-brickers.png</icon>
     <entry>
         <title type="html"><![CDATA[Welcome]]></title>
         <id>https://smash-brickers.github.io/smash-brickers/blog/welcome</id>
